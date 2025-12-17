@@ -1,0 +1,29 @@
+{
+  "name": "character-card-spec-v4",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "cli"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "turbo typecheck",
+    "generate:types": "turbo generate:types",
+    "validate:schema": "turbo validate:schema"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "packageManager": "npm@11.6.2",
+  "engines": {
+    "node": ">=20"
+  }
+}
