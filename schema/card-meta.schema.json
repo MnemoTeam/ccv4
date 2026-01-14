@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/card-meta.schema.json",
+  "title": "Card Meta",
+  "description": "Metadata about a Character Card V4, including creator information, versioning, timestamps, and cryptographic signatures.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "Card ID",
+      "description": "Unique identifier for this character card.",
+      "type": "string"
+    },
+    "creator": {
+      "title": "Creator",
+      "description": "Name or handle of the card's creator.",
+      "type": "string"
+    },
+    "creator_notes": {
+      "title": "Creator Notes",
+      "description": "Free-form notes from the creator about this card.",
+      "type": "string"
+    },
+    "creator_notes_multilingual": {
+      "title": "Creator Notes (Multilingual)",
+      "description": "Localized creator notes keyed by language code (e.g., 'en', 'ja', 'ko').",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "title": "Tags",
+      "description": "List of tags for categorization and discovery.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source": {
+      "title": "Source",
+      "description": "URLs or identifiers indicating where this card was originally published.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "character_version": {
+      "title": "Character Version",
+      "description": "Version string for this iteration of the character.",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "description": "ISO 8601 timestamp of when this card was first created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "title": "Updated At",
+      "description": "ISO 8601 timestamp of when this card was last modified.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "content_hash": {
+      "title": "Content Hash",
+      "description": "Hash of the card's content for change detection and integrity verification.",
+      "type": "string"
+    },
+    "signature": {
+      "title": "Signature",
+      "description": "Cryptographic signature to verify the card's authenticity and integrity.",
+      "type": "object",
+      "properties": {
+        "method": {
+          "title": "Signature Method",
+          "description": "The cryptographic algorithm used for signing.",
+          "type": "string",
+          "const": "ed25519"
+        },
+        "public_key": {
+          "title": "Public Key",
+          "description": "The public key used to verify the signature.",
+          "type": "string"
+        },
+        "signature": {
+          "title": "Signature Value",
+          "description": "The cryptographic signature of the card content.",
+          "type": "string"
+        },
+        "key_source": {
+          "title": "Key Source",
+          "description": "URI where the public key can be retrieved for independent verification.",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["method", "public_key", "signature"],
+      "additionalProperties": false
+    },
+    "extensions": {
+      "title": "Extensions",
+      "description": "Implementation-specific extended metadata.",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

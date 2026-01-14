@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/card-data.schema.json",
+  "title": "Card Data",
+  "description": "The core character definition data for a Character Card V4, including personality, prompts, lorebook, and behavioral settings.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Character Name",
+      "description": "The character's display name.",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "description": "The character's description, typically including appearance, background, and other defining traits.",
+      "type": "string"
+    },
+    "personality": {
+      "title": "Personality",
+      "description": "A summary of the character's personality traits and behavioral tendencies.",
+      "type": "string"
+    },
+    "scenario": {
+      "title": "Scenario",
+      "description": "The current scenario or setting for the conversation.",
+      "type": "string"
+    },
+    "first_mes": {
+      "title": "First Message",
+      "description": "The character's opening message at the start of a conversation.",
+      "type": "string"
+    },
+    "mes_example": {
+      "title": "Message Examples",
+      "description": "Example message exchanges demonstrating the character's speech patterns and behavior.",
+      "type": "string"
+    },
+    "system_prompt": {
+      "title": "System Prompt",
+      "description": "System-level instructions for the AI model when roleplaying this character.",
+      "type": "string"
+    },
+    "post_history_instructions": {
+      "title": "Post-History Instructions",
+      "description": "Instructions inserted after the chat history, typically as a jailbreak or reminder prompt.",
+      "type": "string"
+    },
+    "alternate_greetings": {
+      "title": "Alternate Greetings",
+      "description": "Alternative opening messages that can be used instead of the primary first message.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "character_book": {
+      "title": "Character Book",
+      "description": "An embedded lorebook containing world-building entries for this character.",
+      "$ref": "lorebook.schema.json"
+    },
+    "nickname": {
+      "title": "Nickname",
+      "description": "An alternative short name or nickname for the character.",
+      "type": "string"
+    },
+    "group_only_greetings": {
+      "title": "Group-Only Greetings",
+      "description": "Opening messages used exclusively in group chat contexts.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "card_variables": {
+      "title": "Card Variables",
+      "description": "User-configurable variables that allow customization of the character's behavior.",
+      "type": "array",
+      "items": {
+        "$ref": "card-variable.schema.json"
+      }
+    },
+    "recommended_settings": {
+      "$ref": "#/$defs/recommended-settings"
+    },
+    "prompt_overrides": {
+      "$ref": "#/$defs/prompt-overrides"
+    },
+    "related_characters": {
+      "title": "Related Characters",
+      "description": "Characters related to this one, such as friends, rivals, or family members.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/related-character"
+      }
+    },
+    "group_behavior": {
+      "$ref": "#/$defs/group-behavior"
+    },
+    "persona_hints": {
+      "$ref": "#/$defs/persona-hints"
+    },
+    "extensions": {
+      "title": "Extensions",
+      "description": "Implementation-specific extended data for this character.",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "personality",
+    "scenario",
+    "first_mes",
+    "mes_example",
+    "system_prompt",
+    "post_history_instructions",
+    "alternate_greetings",
+    "group_only_greetings"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "recommended-settings": {
+      "title": "Recommended Settings",
+      "description": "Model and sampler settings recommended by the card creator for optimal results.",
+      "type": "object",
+      "properties": {
+        "models": {
+          "title": "Recommended Models",
+          "description": "List of recommended model configurations.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "title": "API",
+                "description": "The API provider or backend (e.g., 'openai', 'anthropic', 'koboldcpp').",
+                "type": "string"
+              },
+              "model": {
+                "title": "Model",
+                "description": "The specific model identifier.",
+                "type": "string"
+              },
+              "min_context": {
+                "title": "Minimum Context",
+                "description": "Minimum context window size in tokens recommended for this model.",
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": ["api"],
+            "additionalProperties": false
+          }
+        },
+        "temperature": {
+          "title": "Temperature",
+          "description": "Recommended temperature setting for text generation.",
+          "type": "number",
+          "minimum": 0
+        },
+        "top_p": {
+          "title": "Top P",
+          "description": "Recommended top-p (nucleus sampling) value.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "top_k": {
+          "title": "Top K",
+          "description": "Recommended top-k sampling value.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "frequency_penalty": {
+          "title": "Frequency Penalty",
+          "description": "Recommended frequency penalty value.",
+          "type": "number"
+        },
+        "presence_penalty": {
+          "title": "Presence Penalty",
+          "description": "Recommended presence penalty value.",
+          "type": "number"
+        },
+        "min_p": {
+          "title": "Min P",
+          "description": "Recommended min-p sampling value.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "repetition_penalty": {
+          "title": "Repetition Penalty",
+          "description": "Recommended repetition penalty value.",
+          "type": "number",
+          "minimum": 0
+        },
+        "max_tokens": {
+          "title": "Max Tokens",
+          "description": "Recommended maximum number of tokens to generate per response.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "prompt_format": {
+          "title": "Prompt Format",
+          "description": "Recommended prompt format for this character.",
+          "type": "string",
+          "enum": ["chat", "instruct", "completion"]
+        },
+        "content_rating": {
+          "title": "Content Rating",
+          "description": "The intended content rating for this character.",
+          "type": "string",
+          "enum": ["sfw", "nsfw", "mixed"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "prompt-overrides": {
+      "title": "Prompt Overrides",
+      "description": "Overrides and templates for how the character's data is assembled into the final prompt.",
+      "type": "object",
+      "properties": {
+        "system_prompt_prefix": {
+          "title": "System Prompt Prefix",
+          "description": "Text prepended to the system prompt.",
+          "type": "string"
+        },
+        "system_prompt_suffix": {
+          "title": "System Prompt Suffix",
+          "description": "Text appended to the system prompt.",
+          "type": "string"
+        },
+        "char_definition_template": {
+          "title": "Character Definition Template",
+          "description": "Template string for formatting the character definition block.",
+          "type": "string"
+        },
+        "context_prefix": {
+          "title": "Context Prefix",
+          "description": "Text prepended to the conversation context.",
+          "type": "string"
+        },
+        "context_suffix": {
+          "title": "Context Suffix",
+          "description": "Text appended to the conversation context.",
+          "type": "string"
+        },
+        "example_separator": {
+          "title": "Example Separator",
+          "description": "String used to separate example message exchanges.",
+          "type": "string"
+        },
+        "example_as_system": {
+          "title": "Example as System",
+          "description": "When true, example messages are sent as system messages rather than user/assistant messages.",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "related-character": {
+      "title": "Related Character",
+      "description": "A character related to this one, with relationship context for group chats and narrative continuity.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The related character's name.",
+          "type": "string"
+        },
+        "relationship": {
+          "title": "Relationship",
+          "description": "The nature of the relationship (e.g., 'friend', 'rival', 'sibling').",
+          "type": "string"
+        },
+        "card_uri": {
+          "title": "Card URI",
+          "description": "URI to the related character's card file.",
+          "type": "string"
+        },
+        "relationship_context": {
+          "title": "Relationship Context",
+          "description": "Additional narrative context about the relationship.",
+          "type": "string"
+        },
+        "group_dynamic": {
+          "title": "Group Dynamic",
+          "description": "Description of how this character interacts with the related character in group settings.",
+          "type": "string"
+        }
+      },
+      "required": ["name", "relationship"],
+      "additionalProperties": false
+    },
+    "group-behavior": {
+      "title": "Group Behavior",
+      "description": "Settings controlling how this character behaves in group chat contexts.",
+      "type": "object",
+      "properties": {
+        "initiative": {
+          "title": "Initiative",
+          "description": "How likely the character is to speak unprompted in group chats, from 0.0 (passive) to 1.0 (highly proactive).",
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "response_to": {
+          "title": "Response To",
+          "description": "List of character names this character is most likely to respond to in group chats.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "role": {
+          "title": "Role",
+          "description": "The character's role in group dynamics (e.g., 'leader', 'mediator', 'comic-relief').",
+          "type": "string"
+        }
+      },
+      "required": ["initiative"],
+      "additionalProperties": false
+    },
+    "persona-hints": {
+      "title": "Persona Hints",
+      "description": "Suggestions for the user's persona when interacting with this character.",
+      "type": "object",
+      "properties": {
+        "suggested_name": {
+          "title": "Suggested Name",
+          "description": "A suggested name for the user's persona.",
+          "type": "string"
+        },
+        "suggested_persona": {
+          "title": "Suggested Persona",
+          "description": "A suggested persona description for the user.",
+          "type": "string"
+        },
+        "assumed_traits": {
+          "title": "Assumed Traits",
+          "description": "Traits the character assumes about the user.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "suggested_user_icon": {
+          "title": "Suggested User Icon",
+          "description": "Name of an asset to use as the user's icon when chatting with this character.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

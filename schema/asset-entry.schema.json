@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/asset-entry.schema.json",
+  "title": "Asset Entry",
+  "description": "A media asset associated with a character card, such as an icon, background image, or emotion sprite.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "title": "Asset Type",
+      "description": "The type of asset. Standard types are 'icon', 'background', 'emotion', and 'user_icon'. Custom types must use the 'x_' prefix.",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "description": "Human-readable name for this asset.",
+      "type": "string"
+    },
+    "uri": {
+      "title": "URI",
+      "description": "URI pointing to the asset data. May be a data URI, a relative path within the card archive, or an external URL.",
+      "type": "string"
+    },
+    "ext": {
+      "title": "File Extension",
+      "description": "File extension indicating the asset format (e.g., 'png', 'jpg', 'webp').",
+      "type": "string"
+    },
+    "size": {
+      "title": "File Size",
+      "description": "Size of the asset in bytes.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "hash": {
+      "title": "Hash",
+      "description": "Hash of the asset data for integrity verification.",
+      "type": "string"
+    },
+    "label": {
+      "title": "Label",
+      "description": "Display label for this asset, used for UI presentation.",
+      "type": "string"
+    },
+    "mime_type": {
+      "title": "MIME Type",
+      "description": "MIME type of the asset (e.g., 'image/png').",
+      "type": "string"
+    }
+  },
+  "required": ["type", "name", "uri", "ext"],
+  "additionalProperties": false
+}

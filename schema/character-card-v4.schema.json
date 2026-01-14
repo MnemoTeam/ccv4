@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/character-card-v4.schema.json",
+  "title": "Character Card V4",
+  "description": "Top-level schema for the Character Card V4 specification, defining the complete structure of a character card including metadata, character data, and optional assets.",
+  "type": "object",
+  "properties": {
+    "spec": {
+      "title": "Specification",
+      "description": "Identifier for the specification this card conforms to.",
+      "type": "string",
+      "const": "chara_card_v4"
+    },
+    "spec_version": {
+      "title": "Specification Version",
+      "description": "The version of the Character Card specification this card uses.",
+      "type": "string",
+      "const": "4.0"
+    },
+    "meta": {
+      "title": "Card Metadata",
+      "description": "Metadata about the card including creator information, timestamps, and signatures.",
+      "$ref": "card-meta.schema.json"
+    },
+    "data": {
+      "title": "Card Data",
+      "description": "The core character definition data.",
+      "$ref": "card-data.schema.json"
+    },
+    "assets": {
+      "title": "Assets",
+      "description": "Media assets associated with this character card, such as icons, backgrounds, and emotion sprites.",
+      "type": "array",
+      "items": {
+        "$ref": "asset-entry.schema.json"
+      }
+    }
+  },
+  "required": ["spec", "spec_version", "meta", "data"],
+  "additionalProperties": false
+}
