@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/lorebook.schema.json",
+  "title": "Lorebook",
+  "description": "A collection of world-building entries that are conditionally injected into the prompt based on keyword matching and other conditions.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Lorebook Name",
+      "description": "Human-readable name for this lorebook.",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "description": "A description of this lorebook's contents and purpose.",
+      "type": "string"
+    },
+    "scan_depth": {
+      "title": "Scan Depth",
+      "description": "Number of recent messages to scan for keyword matching.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "token_budget": {
+      "title": "Token Budget",
+      "description": "Maximum number of tokens that lorebook entries may collectively consume.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "recursive_scanning": {
+      "title": "Recursive Scanning",
+      "description": "When true, newly inserted lorebook content is also scanned for keywords, potentially triggering additional entries.",
+      "type": "boolean"
+    },
+    "entries": {
+      "title": "Entries",
+      "description": "The lorebook entries.",
+      "type": "array",
+      "items": {
+        "$ref": "lorebook-entry.schema.json"
+      }
+    },
+    "groups": {
+      "title": "Groups",
+      "description": "Logical groups of lorebook entries that can share placement and condition settings.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lorebook-group"
+      }
+    },
+    "extensions": {
+      "title": "Extensions",
+      "description": "Implementation-specific extended data for this lorebook.",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": ["entries"],
+  "additionalProperties": false,
+  "$defs": {
+    "lorebook-group": {
+      "title": "Lorebook Group",
+      "description": "A named group of lorebook entries that can share placement and condition settings.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Group ID",
+          "description": "Unique identifier for this group.",
+          "type": "string"
+        },
+        "name": {
+          "title": "Group Name",
+          "description": "Human-readable name for this group.",
+          "type": "string"
+        },
+        "enabled": {
+          "title": "Enabled",
+          "description": "Whether this group and its entries are active.",
+          "type": "boolean"
+        },
+        "entry_ids": {
+          "title": "Entry IDs",
+          "description": "List of entry identifiers that belong to this group.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "integer" }
+            ]
+          }
+        },
+        "shared_placement": {
+          "title": "Shared Placement",
+          "description": "Placement settings applied to all entries in this group, unless overridden by individual entries.",
+          "$ref": "lorebook-entry.schema.json#/$defs/placement"
+        },
+        "shared_conditions": {
+          "title": "Shared Conditions",
+          "description": "Conditions applied to all entries in this group, unless overridden by individual entries.",
+          "$ref": "lorebook-entry.schema.json#/$defs/conditions"
+        }
+      },
+      "required": ["id", "name", "enabled", "entry_ids"],
+      "additionalProperties": false
+    }
+  }
+}

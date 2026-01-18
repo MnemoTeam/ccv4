@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/lorebook-entry.schema.json",
+  "title": "Lorebook Entry",
+  "description": "A single entry within a Character Card V4 lorebook, containing content triggered by keyword matching.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "Entry ID",
+      "description": "Unique identifier for this lorebook entry.",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "integer" }
+      ]
+    },
+    "name": {
+      "title": "Entry Name",
+      "description": "Human-readable name for this lorebook entry.",
+      "type": "string"
+    },
+    "comment": {
+      "title": "Comment",
+      "description": "Author comment or note about this entry.",
+      "type": "string"
+    },
+    "content": {
+      "title": "Content",
+      "description": "The text content that is injected into the prompt when this entry is triggered.",
+      "type": "string"
+    },
+    "enabled": {
+      "title": "Enabled",
+      "description": "Whether this entry is active and can be triggered.",
+      "type": "boolean"
+    },
+    "keys": {
+      "title": "Keys",
+      "description": "Primary keywords that trigger this entry when found in the context.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "secondary_keys": {
+      "title": "Secondary Keys",
+      "description": "Secondary keywords used for selective activation. When selective mode is enabled, at least one secondary key must also match.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "selective": {
+      "title": "Selective",
+      "description": "When true, both a primary key and a secondary key must match to trigger this entry.",
+      "type": "boolean"
+    },
+    "use_regex": {
+      "title": "Use Regex",
+      "description": "When true, keys are interpreted as regular expressions.",
+      "type": "boolean"
+    },
+    "case_sensitive": {
+      "title": "Case Sensitive",
+      "description": "When true, key matching is case-sensitive.",
+      "type": "boolean"
+    },
+    "constant": {
+      "title": "Constant",
+      "description": "When true, this entry is always injected regardless of key matching.",
+      "type": "boolean"
+    },
+    "exclude_keys": {
+      "title": "Exclude Keys",
+      "description": "Keywords that prevent this entry from being triggered when found in the context.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "insertion_order": {
+      "title": "Insertion Order",
+      "description": "Numeric order controlling the sequence in which triggered entries are inserted into the prompt.",
+      "type": "integer"
+    },
+    "priority": {
+      "title": "Priority",
+      "description": "Priority value for token budget allocation. Higher priority entries are kept when the token budget is exceeded.",
+      "type": "integer"
+    },
+    "placement": {
+      "$ref": "#/$defs/placement"
+    },
+    "placement_fallbacks": {
+      "title": "Placement Fallbacks",
+      "description": "Ordered list of fallback placements to try if the primary placement cannot be satisfied.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/placement"
+      }
+    },
+    "conditions": {
+      "$ref": "#/$defs/conditions"
+    },
+    "behavior": {
+      "title": "Behavior",
+      "description": "Controls runtime behavior of this entry.",
+      "type": "object",
+      "properties": {
+        "ignore_on_max_context": {
+          "title": "Ignore on Max Context",
+          "description": "When true, this entry is dropped if the context is at maximum capacity.",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "extensions": {
+      "title": "Extensions",
+      "description": "Implementation-specific extended data for this lorebook entry.",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": ["content", "enabled", "keys", "insertion_order"],
+  "additionalProperties": false,
+  "$defs": {
+    "placement": {
+      "title": "Placement",
+      "description": "Controls where in the prompt this entry's content is inserted.",
+      "type": "object",
+      "properties": {
+        "target": {
+          "title": "Target",
+          "description": "The target location in the prompt where this entry is inserted.",
+          "type": "string",
+          "enum": ["chat_history", "before_desc", "after_desc", "personality", "scenario", "prefill"]
+        },
+        "depth": {
+          "title": "Depth",
+          "description": "Number of messages from the bottom of the chat history to insert at.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "reverse_depth": {
+          "title": "Reverse Depth",
+          "description": "Number of messages from the top of the chat history to insert at.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "instruct_depth": {
+          "title": "Instruct Depth",
+          "description": "Depth for instruct-mode insertion.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "reverse_instruct_depth": {
+          "title": "Reverse Instruct Depth",
+          "description": "Reverse depth for instruct-mode insertion.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "role": {
+          "title": "Role",
+          "description": "The message role under which this entry is inserted.",
+          "type": "string",
+          "enum": ["system", "user", "assistant"]
+        },
+        "scan_depth_override": {
+          "title": "Scan Depth Override",
+          "description": "Overrides the lorebook's scan_depth for this entry.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "instruct_scan_depth_override": {
+          "title": "Instruct Scan Depth Override",
+          "description": "Overrides the lorebook's scan_depth for this entry in instruct mode.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "conditions": {
+      "title": "Conditions",
+      "description": "Additional conditions that must be met for this entry to activate.",
+      "type": "object",
+      "properties": {
+        "min_turn": {
+          "title": "Minimum Turn",
+          "description": "Minimum conversation turn number before this entry can activate.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "every_n_turns": {
+          "title": "Every N Turns",
+          "description": "Activates this entry every N turns.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "greeting_index": {
+          "title": "Greeting Index",
+          "description": "Only activate when the specified greeting index is in use.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "user_icon_name": {
+          "title": "User Icon Name",
+          "description": "Only activate when the user's icon matches this name.",
+          "type": "string"
+        },
+        "force_activate": {
+          "title": "Force Activate",
+          "description": "When true, this entry is always activated regardless of other conditions.",
+          "type": "boolean"
+        },
+        "force_deactivate": {
+          "title": "Force Deactivate",
+          "description": "When true, this entry is always deactivated regardless of other conditions.",
+          "type": "boolean"
+        },
+        "on_first_match": {
+          "title": "On First Match",
+          "description": "Behavior after the first time this entry is matched.",
+          "type": "string",
+          "enum": ["keep_active", "deactivate", "normal"]
+        },
+        "disable_ui_prompts": {
+          "title": "Disable UI Prompts",
+          "description": "List of UI prompt identifiers to disable when this entry is active.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "variable_condition": {
+          "title": "Variable Condition",
+          "description": "Expression referencing card variables that must evaluate to true for activation.",
+          "type": "string"
+        },
+        "group_only": {
+          "title": "Group Only",
+          "description": "When true, this entry only activates in group chat contexts.",
+          "type": "boolean"
+        },
+        "solo_only": {
+          "title": "Solo Only",
+          "description": "When true, this entry only activates in solo (non-group) chat contexts.",
+          "type": "boolean"
+        },
+        "min_context_tokens": {
+          "title": "Minimum Context Tokens",
+          "description": "Minimum number of available context tokens required for this entry to activate.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

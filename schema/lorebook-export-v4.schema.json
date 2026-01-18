@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/lorebook-export-v4.schema.json",
+  "title": "Lorebook Export V4",
+  "description": "Standalone export format for a lorebook, allowing lorebooks to be shared independently of character cards.",
+  "type": "object",
+  "properties": {
+    "spec": {
+      "title": "Specification",
+      "description": "Identifier for the specification this export conforms to.",
+      "type": "string",
+      "const": "lorebook_v4"
+    },
+    "spec_version": {
+      "title": "Specification Version",
+      "description": "The version of the lorebook export specification.",
+      "type": "string",
+      "const": "4.0"
+    },
+    "data": {
+      "title": "Lorebook Data",
+      "description": "The lorebook content.",
+      "$ref": "lorebook.schema.json"
+    }
+  },
+  "required": ["spec", "spec_version", "data"],
+  "additionalProperties": false
+}

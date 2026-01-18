@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charactercard.org/schema/v4/card-variable.schema.json",
+  "title": "Card Variable",
+  "description": "A user-configurable variable that allows card creators to expose customization options to users.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "title": "Key",
+      "description": "Unique machine-readable identifier for this variable, used in variable references.",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "description": "Human-readable display name for this variable.",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "description": "Explanation of what this variable controls.",
+      "type": "string"
+    },
+    "type": {
+      "title": "Type",
+      "description": "The input type for this variable.",
+      "type": "string",
+      "enum": ["select", "text", "toggle"]
+    },
+    "default": {
+      "title": "Default Value",
+      "description": "The default value for this variable.",
+      "type": "string"
+    },
+    "options": {
+      "title": "Options",
+      "description": "Available options for select-type variables.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "title": "Value",
+            "description": "The machine-readable value for this option.",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "description": "The human-readable label displayed for this option.",
+            "type": "string"
+          }
+        },
+        "required": ["value", "label"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["key", "name", "type", "default"],
+  "additionalProperties": false,
+  "if": {
+    "properties": {
+      "type": { "const": "select" }
+    },
+    "required": ["type"]
+  },
+  "then": {
+    "required": ["key", "name", "type", "default", "options"]
+  }
+}
