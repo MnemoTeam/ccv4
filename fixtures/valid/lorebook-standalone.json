@@ -1,0 +1,37 @@
+{
+  "spec": "lorebook_v4",
+  "spec_version": "4.0",
+  "data": {
+    "name": "Fantasy World Lore",
+    "description": "Shared lore for a fantasy campaign setting",
+    "scan_depth": 3,
+    "token_budget": 4096,
+    "recursive_scanning": true,
+    "entries": [
+      {
+        "id": "lore-1",
+        "name": "The Crystal Kingdom",
+        "content": "The Crystal Kingdom is a realm where all buildings are made of living crystal that grows and reshapes itself.",
+        "enabled": true,
+        "keys": ["Crystal Kingdom", "crystal", "kingdom"],
+        "insertion_order": 0,
+        "placement": {
+          "target": "chat_history",
+          "depth": 3,
+          "role": "system"
+        }
+      },
+      {
+        "id": "lore-2",
+        "name": "Dragon Council",
+        "content": "The Dragon Council governs all dragon-kind. They meet once per century at the Obsidian Spire.",
+        "enabled": true,
+        "keys": ["dragon", "council", "Dragon Council"],
+        "insertion_order": 1,
+        "conditions": {
+          "min_turn": 5
+        }
+      }
+    ]
+  }
+}
