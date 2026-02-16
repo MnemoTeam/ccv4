@@ -1,0 +1,30 @@
+{
+  "spec": "chara_card_v4",
+  "spec_version": "4.0",
+  "meta": {},
+  "data": {
+    "name": "Test",
+    "description": "",
+    "personality": "",
+    "scenario": "",
+    "first_mes": "",
+    "mes_example": "",
+    "system_prompt": "",
+    "post_history_instructions": "",
+    "alternate_greetings": [],
+    "group_only_greetings": [],
+    "character_book": {
+      "entries": [
+        {
+          "content": "Test",
+          "enabled": true,
+          "keys": ["test"],
+          "insertion_order": 0,
+          "placement": {
+            "target": "invalid_target"
+          }
+        }
+      ]
+    }
+  }
+}

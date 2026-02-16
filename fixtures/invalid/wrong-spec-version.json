@@ -1,0 +1,17 @@
+{
+  "spec": "chara_card_v4",
+  "spec_version": "3.0",
+  "meta": {},
+  "data": {
+    "name": "Test",
+    "description": "",
+    "personality": "",
+    "scenario": "",
+    "first_mes": "",
+    "mes_example": "",
+    "system_prompt": "",
+    "post_history_instructions": "",
+    "alternate_greetings": [],
+    "group_only_greetings": []
+  }
+}

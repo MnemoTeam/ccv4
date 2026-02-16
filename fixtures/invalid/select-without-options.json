@@ -1,0 +1,25 @@
+{
+  "spec": "chara_card_v4",
+  "spec_version": "4.0",
+  "meta": {},
+  "data": {
+    "name": "Test",
+    "description": "",
+    "personality": "",
+    "scenario": "",
+    "first_mes": "",
+    "mes_example": "",
+    "system_prompt": "",
+    "post_history_instructions": "",
+    "alternate_greetings": [],
+    "group_only_greetings": [],
+    "card_variables": [
+      {
+        "key": "mode",
+        "name": "Mode",
+        "type": "select",
+        "default": "a"
+      }
+    ]
+  }
+}
