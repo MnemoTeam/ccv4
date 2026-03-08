@@ -1,0 +1,25 @@
+{
+  "name": "@character-card/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "CLI tool for Character Card validation, migration, and conversion",
+  "license": "MIT",
+  "bin": {
+    "chara": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@character-card/types": "*",
+    "@character-card/validator": "*",
+    "@character-card/migrate": "*",
+    "commander": "^13.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0"
+  }
+}

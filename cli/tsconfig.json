@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "references": [
+    { "path": "../packages/types" },
+    { "path": "../packages/validator" },
+    { "path": "../packages/migrate" }
+  ]
+}
