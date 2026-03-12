@@ -22,13 +22,13 @@ export const convertCommand = new Command("convert")
     // For now, provide a clear message
     if (inputExt === "png" || outputExt === "png") {
       console.log("PNG embedding/extraction requires additional setup.");
-      console.log("Use the @character-card/validator package API for PNG operations.");
+      console.log("Use the @mnemoteam/validator package API for PNG operations.");
       process.exit(1);
     }
 
     if (inputExt === "charx" || outputExt === "charx") {
       console.log("CHARX format support requires additional setup.");
-      console.log("Use the @character-card/validator package API for CHARX operations.");
+      console.log("Use the @mnemoteam/validator package API for CHARX operations.");
       process.exit(1);
     }
 

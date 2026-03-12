@@ -1,4 +1,4 @@
-import type { CharacterCardV2, CharacterCardV4, CharacterCardV2Data, CharacterBookV2, CharacterBookEntryV2 } from "@character-card/types";
+import type { CharacterCardV2, CharacterCardV4, CharacterCardV2Data, CharacterBookV2, CharacterBookEntryV2 } from "@mnemoteam/types";
 
 export function migrateV4toV2(v4: CharacterCardV4): CharacterCardV2 {
   const { meta, data } = v4;

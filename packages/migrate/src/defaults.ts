@@ -1,4 +1,4 @@
-import type { CardMeta, CardData, CharacterCardV4 } from "@character-card/types";
+import type { CardMeta, CardData, CharacterCardV4 } from "@mnemoteam/types";
 
 export function defaultMeta(): CardMeta {
   return {};
@@ -19,7 +19,7 @@ export function defaultData(): CardData {
   };
 }
 
-export function wrapV4(meta: CardMeta, data: CardData, assets?: import("@character-card/types").AssetEntry[]): CharacterCardV4 {
+export function wrapV4(meta: CardMeta, data: CardData, assets?: import("@mnemoteam/types").AssetEntry[]): CharacterCardV4 {
   const card: CharacterCardV4 = {
     spec: "chara_card_v4",
     spec_version: "4.0",

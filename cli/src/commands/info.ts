@@ -1,6 +1,6 @@
 import { Command } from "commander";
 import { readFileSync } from "node:fs";
-import { detectVersion } from "@character-card/validator";
+import { detectVersion } from "@mnemoteam/validator";
 
 export const infoCommand = new Command("info")
   .description("Display information about a character card")

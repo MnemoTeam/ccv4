@@ -1,4 +1,4 @@
-import type { CharacterCardV1, CharacterCardV4 } from "@character-card/types";
+import type { CharacterCardV1, CharacterCardV4 } from "@mnemoteam/types";
 import { defaultMeta, defaultData, wrapV4 } from "./defaults.js";
 
 export function migrateV1toV4(v1: CharacterCardV1): CharacterCardV4 {

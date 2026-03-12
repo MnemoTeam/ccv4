@@ -5,7 +5,7 @@ import { migrateV3toV4 } from "../src/v3-to-v4.js";
 import { migrateV4toV2 } from "../src/v4-to-v2.js";
 import { migrateV4toV3 } from "../src/v4-to-v3.js";
 import { parseDecorators, toDecoratorString } from "../src/parse-decorators.js";
-import type { CharacterCardV1, CharacterCardV2, CharacterCardV3 } from "@character-card/types";
+import type { CharacterCardV1, CharacterCardV2, CharacterCardV3 } from "@mnemoteam/types";
 
 const v1Card: CharacterCardV1 = {
   name: "Alice",

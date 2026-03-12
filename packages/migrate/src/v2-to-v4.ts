@@ -1,4 +1,4 @@
-import type { CharacterCardV2, CharacterCardV4, Lorebook, LorebookEntry } from "@character-card/types";
+import type { CharacterCardV2, CharacterCardV4, Lorebook, LorebookEntry } from "@mnemoteam/types";
 import { defaultMeta, wrapV4 } from "./defaults.js";
 
 export function migrateV2toV4(v2: CharacterCardV2): CharacterCardV4 {

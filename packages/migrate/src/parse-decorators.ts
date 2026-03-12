@@ -1,4 +1,4 @@
-import type { LorebookPlacement, LorebookConditions, LorebookBehavior } from "@character-card/types";
+import type { LorebookPlacement, LorebookConditions, LorebookBehavior } from "@mnemoteam/types";
 
 export interface ParsedDecorators {
   placement: LorebookPlacement;

@@ -9,8 +9,8 @@ export default defineConfig({
     js: "#!/usr/bin/env node",
   },
   external: [
-    "@character-card/types",
-    "@character-card/validator",
-    "@character-card/migrate",
+    "@mnemoteam/types",
+    "@mnemoteam/validator",
+    "@mnemoteam/migrate",
   ],
 });

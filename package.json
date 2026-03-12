@@ -25,5 +25,8 @@
   "packageManager": "npm@11.6.2",
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "@mnemoteam/types": "^0.1.0"
   }
 }

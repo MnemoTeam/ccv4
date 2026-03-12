@@ -6,5 +6,5 @@ export default defineConfig({
   dts: true,
   clean: true,
   splitting: false,
-  external: ["@character-card/types", "@character-card/validator"],
+  external: ["@mnemoteam/types", "@mnemoteam/validator"],
 });

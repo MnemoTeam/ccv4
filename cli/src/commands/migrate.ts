@@ -1,13 +1,13 @@
 import { Command } from "commander";
 import { readFileSync, writeFileSync } from "node:fs";
-import { detectVersion } from "@character-card/validator";
+import { detectVersion } from "@mnemoteam/validator";
 import {
   migrateV1toV4,
   migrateV2toV4,
   migrateV3toV4,
   migrateV4toV2,
   migrateV4toV3,
-} from "@character-card/migrate";
+} from "@mnemoteam/migrate";
 
 export const migrateCommand = new Command("migrate")
   .description("Migrate a character card between versions")

@@ -1,4 +1,4 @@
-import type { CharacterCardV3, CharacterCardV4, CharacterCardV3Data, CharacterBookV3, CharacterBookEntryV3 } from "@character-card/types";
+import type { CharacterCardV3, CharacterCardV4, CharacterCardV3Data, CharacterBookV3, CharacterBookEntryV3 } from "@mnemoteam/types";
 import { toDecoratorString } from "./parse-decorators.js";
 
 function isoToUnix(iso: string | undefined): number | undefined {

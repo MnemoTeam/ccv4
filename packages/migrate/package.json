@@ -1,5 +1,5 @@
 {
-  "name": "@character-card/migrate",
+  "name": "@mnemoteam/migrate",
   "version": "0.1.0",
   "type": "module",
   "description": "Migration tool for Character Card V1/V2/V3 to V4 and back",
@@ -26,8 +26,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@character-card/types": "*",
-    "@character-card/validator": "*"
+    "@mnemoteam/types": "*",
+    "@mnemoteam/validator": "*"
   },
   "devDependencies": {
     "tsup": "^8.3.0",

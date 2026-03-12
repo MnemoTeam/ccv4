@@ -1,6 +1,6 @@
 import { Command } from "commander";
 import { readFileSync } from "node:fs";
-import { validate, validateLorebook } from "@character-card/validator";
+import { validate, validateLorebook } from "@mnemoteam/validator";
 
 export const validateCommand = new Command("validate")
   .description("Validate a character card or lorebook against the V4 schema")

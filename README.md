@@ -38,30 +38,30 @@ fixtures/       Test data
 
 ## Packages
 
-### @character-card/types
+### @mnemoteam/types
 
 TypeScript types for V1 through V4 cards.
 
 ```
-npm install @character-card/types
+npm install @mnemoteam/types
 ```
 
 ```ts
-import type { CharacterCardV4, AnyCharacterCard } from '@character-card/types';
+import type { CharacterCardV4, AnyCharacterCard } from '@mnemoteam/types';
 ```
 
 Exports: `CharacterCardV1`, `CharacterCardV2`, `CharacterCardV3`, `CharacterCardV4`, `AnyCharacterCard`.
 
-### @character-card/validator
+### @mnemoteam/validator
 
 Validates cards against the JSON schemas.
 
 ```
-npm install @character-card/validator
+npm install @mnemoteam/validator
 ```
 
 ```ts
-import { validate, detectVersion } from '@character-card/validator';
+import { validate, detectVersion } from '@mnemoteam/validator';
 
 const result = validate(card);
 if (!result.valid) {
@@ -71,16 +71,16 @@ if (!result.valid) {
 
 Exports: `validate`, `validateLorebook`, `detectVersion`.
 
-### @character-card/migrate
+### @mnemoteam/migrate
 
 Migrates cards between versions. Supports V1/V2/V3 to V4, and V4 down to V2/V3.
 
 ```
-npm install @character-card/migrate
+npm install @mnemoteam/migrate
 ```
 
 ```ts
-import { migrateV2toV4, migrateV4toV3 } from '@character-card/migrate';
+import { migrateV2toV4, migrateV4toV3 } from '@mnemoteam/migrate';
 
 const v4Card = migrateV2toV4(v2Card);
 const v3Card = migrateV4toV3(v4Card);
@@ -93,7 +93,7 @@ Exports: `migrateV1toV4`, `migrateV2toV4`, `migrateV3toV4`, `migrateV4toV2`, `mi
 The `chara` command-line tool for working with character cards.
 
 ```
-npm install -g @character-card/cli
+npm install -g @mnemoteam/cli
 ```
 
 **Validate a card:**

@@ -1,5 +1,5 @@
 {
-  "name": "@character-card/validator",
+  "name": "@mnemoteam/validator",
   "version": "0.1.0",
   "type": "module",
   "description": "JSON Schema-based validator for Character Card specifications",
@@ -26,7 +26,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@character-card/types": "*",
+    "@mnemoteam/types": "*",
     "ajv": "^8.17.0",
     "ajv-formats": "^3.0.0"
   },

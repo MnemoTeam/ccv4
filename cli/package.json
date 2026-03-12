@@ -1,5 +1,5 @@
 {
-  "name": "@character-card/cli",
+  "name": "@mnemoteam/cli",
   "version": "0.1.0",
   "type": "module",
   "description": "CLI tool for Character Card validation, migration, and conversion",
@@ -13,9 +13,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@character-card/types": "*",
-    "@character-card/validator": "*",
-    "@character-card/migrate": "*",
+    "@mnemoteam/types": "*",
+    "@mnemoteam/validator": "*",
+    "@mnemoteam/migrate": "*",
     "commander": "^13.0.0"
   },
   "devDependencies": {

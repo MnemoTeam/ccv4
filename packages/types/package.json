@@ -1,5 +1,5 @@
 {
-  "name": "@character-card/types",
+  "name": "@mnemoteam/types",
   "version": "0.1.0",
   "type": "module",
   "description": "TypeScript type definitions for Character Card specifications V1-V4",

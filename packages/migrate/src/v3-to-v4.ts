@@ -1,7 +1,7 @@
 import type {
   CharacterCardV3, CharacterCardV4, CardMeta, CardData,
   Lorebook, LorebookEntry, AssetEntry,
-} from "@character-card/types";
+} from "@mnemoteam/types";
 import { wrapV4 } from "./defaults.js";
 import { parseDecorators } from "./parse-decorators.js";
 
