@@ -4,6 +4,24 @@ A JSON format for character cards used in AI roleplay and chat applications.
 
 Developed at [mnemo.studio](https://mnemo.studio).
 
+## Spec Status
+
+> **Current stage: Draft — Pending Team Review**
+
+This spec has not yet been approved. The steps below outline the process from draft to ratification.
+
+| # | Step | Status |
+|---|------|--------|
+| 1 | **Draft spec written** | Done |
+| 2 | **Reference implementation** (schema, types, validator, migration, CLI) | Done |
+| 3 | **Internal team review** — collect feedback from all team members | **In progress** |
+| 4 | **Revise spec** based on team feedback | Not started |
+| 5 | **Team sign-off** — all members approve the final draft | Not started |
+| 6 | **External community feedback** (implementors, frontend devs, etc.) | Not started |
+| 7 | **Final revisions & ratification** | Not started |
+
+We are currently on **step 3**. The spec and tooling are feature-complete, but we still need feedback and approval from all team members before moving forward.
+
 ## Previous Versions
 
 - [V1 Spec](https://github.com/malfoyslastname/character-card-spec-v2/blob/main/spec_v1.md)
